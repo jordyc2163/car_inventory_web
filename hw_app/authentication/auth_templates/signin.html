@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for cat, msg in messages %}
+                {% if cat == 'user-created' %}
+                <div class="container">
+                    {{ msg }}
+                    <button type="button" class="close" data-dismiss = "alert" onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %} 
+</div>
+
+<div class="signin">
+    <img src="../../static/images/undraw_Trip_re_f724.png" alt="Travel Image">
+    <div class="signinform">
+        <h1>Sign In</h1>
+        <main class="row">
+            <aside class="col-12 col-md-6">
+                <h2>Log in to your account here</h2>
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <fieldset id="email-field">
+                            {{ form.email.label}}
+                            {{ form.email(class = "form-control", placeholder = "Enter email here") }}
+                        </fieldset>
+                
+                        <fieldset id="pass-field">
+                            {{ form.password.label}}
+                            {{ form.password(class = "form-control", placeholder = "Enter password here") }}
+                        </fieldset>
+                        <!-- Submit Button -->
+                        {{ form.submit_button(class = "btn btn-primary btn-block") }}
+                    </div>
+                </form>
+            </aside>
+        </main>
+    </div>
+</div>
+{% endblock content %}

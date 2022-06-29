@@ -4,11 +4,13 @@
 <div class="signup">
     <img src="../../static/images/undraw_Trip_re_f724.png" alt="Travel Image">
     <div class="signupform">
-        <h2>Sign Up</h2>
-        <div class="username">Enter your username</div>
-        <input type="text" placeholder="Username">
-        <div class="username">Enter a new password</div>
-        <input type="password" placeholder="Password">
+        <h1>Sign Up</h1>
+        <main class="row">
+            <aside class="col-12 col-md-6">
+                <h2>Create your account here</h2>
+                {% include 'forms.html' %}
+            </aside>
+        </main>
     </div>
 </div>
 {% endblock content %}
