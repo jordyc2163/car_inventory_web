@@ -8,7 +8,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 
 auth = Blueprint('auth', __name__, template_folder='auth_templates')
 
-@auth.route('/signin')
+@auth.route('/signin', methods = ['GET', 'POST'])
 def signin():
     form = UserSignInForm()
     try:
@@ -37,8 +37,10 @@ def signup():
         if request.method == "POST" and form.validate_on_submit():
             email = form.email.data
             password = form.password.data
+            first_name = form.first_name.data
+            last_name = form.last_name.data
 
-            user = User(email, password = password)
+            user = User(email, first_name, last_name, password = password)
 
             db.session.add(user)
             db.session.commit()
@@ -49,3 +51,9 @@ def signup():
     except:
         raise Exception('Invalid Form Data: Please Check Your Form') 
     return render_template('signup.html', form=form)
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('site.home'))
