@@ -1,0 +1,1 @@
+web: gunicorn hw_app:app --preload
